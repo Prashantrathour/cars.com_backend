@@ -20,6 +20,15 @@ invetoryRouter.post("/inventory", async (req, res) => {
 invetoryRouter.get("/inventory", async (req, res) => {
   // const search="Honda"
   const { order, filter, search } = req.query;
+if( !order || !filter ){
+  let deals = await InventoryModel.find({}).populate({
+    path: "oemId",
+  });
+
+  res.status(200).json({ deals });
+  return
+}
+
   try {
     if (filter === "price") {
       let deals;
@@ -69,10 +78,10 @@ invetoryRouter.get("/inventory", async (req, res) => {
         path: "oemId",
       });
 
-      res.status(200).send({ deals });
+      res.status(200).json({ deals });
     }
   } catch (error) {
-    res.status(500).send({ msg: error.message });
+    res.status(500).json({ msg: error.message });
   }
 });
 
