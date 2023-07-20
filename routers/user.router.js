@@ -2,10 +2,10 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { userModel } = require("../models/user.model");
-
+const cors=require("cors")
 require("dotenv").config();
 const userRouter = express.Router();
-
+userRouter.use(cors())
 userRouter.post("/register", async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
   if (!firstName||!lastName||!email || !password) {
