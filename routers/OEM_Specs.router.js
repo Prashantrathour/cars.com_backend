@@ -27,7 +27,7 @@ OEM_SpecsRouter.get("/getspecs", async (req, res) => {
       res.send(specs);
     }
   } catch (error) {
-    res.send({ error });
+    res.status(404).send({msg:"Server error"})
   }
 });
 
