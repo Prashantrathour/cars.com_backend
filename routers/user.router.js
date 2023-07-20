@@ -82,7 +82,7 @@ userRouter.post("/login", async (req, res) => {
           process.env.SECRATE_KEY
         );
         res.cookie("token", token, { httpOnly: true });
-        res.json({ msg: "Logged In!", token, user: user.firstName });
+        res.json({ msg: "Logged In!", token, user: user.firstName,userID:user._id });
         // console.log(res)
       } else {
         res.status(401).json({ msg: "Wrong Credentials" });
